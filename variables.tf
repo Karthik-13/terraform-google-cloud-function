@@ -36,6 +36,11 @@ variable "function_name" {
   description = "Name of the cloud function"
 }
 
+variable "bucket_name" {
+  type        = "string"
+  description = "GCP Storage Bucket where function code will reside"
+}
+
 variable "source_dir" {
   type        = "string"
   description = "Name of the directory with Function Code"

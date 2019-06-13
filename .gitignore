@@ -1,2 +1,4 @@
 **/*.tfvars
 **/*.tfstate
+**/files
+.terraform/

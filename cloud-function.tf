@@ -1,7 +1,3 @@
-locals {
-  bucket_prefix = var.function_name
-}
-
 data "archive_file" "zip" {
   type        = "zip"
   source_dir = "${path.module}/${var.source_dir}/"
@@ -10,12 +6,12 @@ data "archive_file" "zip" {
 
 
 resource "google_storage_bucket" "bucket" {
-  name = join("_", [local.bucket_prefix, var.function_name])
+  name = var.bucket_name
   labels = local.labels
 }
 
 resource "google_storage_bucket_object" "archive" {
-  name   = "index.zip"
+  name   = "${var.function_name}/index.zip"
   bucket = google_storage_bucket.bucket.name
   source = data.archive_file.zip.output_path
 }
